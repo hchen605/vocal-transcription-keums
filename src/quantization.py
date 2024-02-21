@@ -204,7 +204,7 @@ def refine_note(est_note, tempo):
         est_pitch_mf3_v: (array)
             
     """
-    one_beat_size = one_beat_frame_size(tempo)
+    one_beat_size = one_beat_frame_size(tempo) # frames/beat
     est_note_mf1 = median_filter_pitch(est_note, one_beat_size, 1 / 8)
     est_note_mf2 = median_filter_pitch(est_note_mf1, one_beat_size, 1 / 4)
     est_note_mf3 = median_filter_pitch(est_note_mf2, one_beat_size, 1 / 3)
