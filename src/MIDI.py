@@ -125,6 +125,25 @@ def note_to_segment(note):
 
     return list(zip(startSeg, endSeg, notes))
 
+def shift_segments(segments):
+    """ Shift segments so that the first segment starts at time 0
+    ----------
+    Parameters:
+        segments: [start(s), end(s), pitch] (list of tuples)
+    ----------
+    Returns: 
+        shifted_segments: [start(s), end(s), pitch] (list of tuples) 
+    """
+    if not segments:
+        return segments
+
+    # Calculate the shift amount
+    shift_amount = segments[0][0]
+
+    # Shift all segments
+    shifted_segments = [(start - shift_amount, end - shift_amount, pitch) for start, end, pitch in segments]
+
+    return shifted_segments
 
 def note2Midi(frame_level_pitchscroe, path_output, tempo):
     # note = np.loadtxt(path_input_note)

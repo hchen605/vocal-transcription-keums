@@ -31,6 +31,7 @@ To validate the method, we conduct various experiment settings by investigating 
 - Hardware
   - 1 GPU : GeForce GTX 3090
 
+`rsync -avz -e "ssh -i ~/.ssh/google_compute_engine.pub" bergen.wav hchen@34.170.199.52:/home/hchen/vocal-transcription-keums/audio`
 
 ## Using STP from the command line
 ``` 

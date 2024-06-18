@@ -80,16 +80,22 @@ def main(args):
     path_audio = args.path_audio
     fl_note = ST.predict_melody(model_ST, path_audio)  # frame-level pitch score
 
+
+
     """ post-processing """
     tempo = calc_tempo(path_audio)
+    print('-- Detected tempo: ', tempo)
     refined_fl_note = refine_note(fl_note, tempo)  # frame-level pitch score
 
     """ convert frame-level pitch score to note-level (time-axis) """
     segment = note_to_segment(refined_fl_note)  # note-level pitch score
 
+    """ shift segments to start from 0 """
+    segment = shift_segments(segment)
+
     """ save ouput to .mid """
     filename = get_filename_wo_extension(path_audio)
-    path_output = f"{args.path_save}/{filename}.mid"
+    path_output = f"{args.path_save}/{filename}_shift.mid"
     segment_to_midi(segment, path_output=path_output, tempo=tempo)
 
     if args.output_type == "fps":
